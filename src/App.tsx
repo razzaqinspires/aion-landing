@@ -4,9 +4,9 @@ import { motion, useScroll, useTransform, AnimatePresence, useDragControls } fro
 import { io } from 'socket.io-client';
 import { 
   Brain, Layers, ArrowRight, ArrowLeft, Activity, Shield, Binary, 
-  Cpu, Search, X, BookOpen, ChevronRight, Terminal, Zap, Wifi, Globe, 
+  Cpu, Search, X, BookOpen, ChevronRight, Terminal, Zap, 
   MessageSquare, User, Settings, BrainCircuit, Save, Lock, Image as ImageIcon,
-  Clock, Database, Hash
+  Clock, Database, Hash, Send 
 } from 'lucide-react';
 
 // ==========================================
@@ -853,7 +853,8 @@ const LandingContent = ({ onOpenDocs, onOpenStatus, onOpenTerminal }: { onOpenDo
         <div className="relative overflow-hidden">
           {/* Gunakan _ di onDragEnd (e, i) -> (_, i) untuk menghindari error unused variable 'e' */}
           <motion.div className="flex cursor-grab active:cursor-grabbing" drag="x" dragControls={dragControls} dragConstraints={{ left: -(researchItems.length - 1) * 350, right: 0 }} dragElastic={0.2} onDragEnd={(_, i) => { 
-             if (i.offset.x < -100) setCurrentIndex(c => Math.min(c + 1, researchItems.length - 1)); else if (i.offset.x > 100) setCurrentIndex(c => Math.max(c - 1, 0)); 
+            if (i.offset.x < -100) setCurrentIndex(c => Math.min(c + 1, researchItems.length - 1)); 
+            else if (i.offset.x > 100) setCurrentIndex(c => Math.max(c - 1, 0));
           }} animate={{ x: -currentIndex * 350 }}>
             {researchItems.map((item, i) => (
               <div key={i} className="min-w-[300px] md:min-w-[400px] px-2">

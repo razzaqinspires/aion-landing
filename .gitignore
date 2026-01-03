@@ -1,4 +1,9 @@
-# Logs
+# ==============================================
+# 🛡️ AION SYSTEM SHIELD (.gitignore)
+# ==============================================
+
+# 1. LOGS & DIAGNOSTICS (Prevent Noise)
+# ----------------------------------------------
 logs
 *.log
 npm-debug.log*
@@ -6,13 +11,32 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+.eslintcache
 
+# 2. DEPENDENCIES (Heavy Matter)
+# ----------------------------------------------
 node_modules
+.pnpm-store
+
+# 3. BUILD ARTIFACTS (Compiled Output)
+# ----------------------------------------------
 dist
 dist-ssr
 *.local
 
-# Editor directories and files
+# 4. ENVIRONMENT & SECURITY (CRITICAL)
+# ----------------------------------------------
+# Jangan pernah upload keys asli ke repo public
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+# Kecuali contoh template untuk developer lain
+!.env.example
+
+# 5. EDITOR & OS METADATA (System Trash)
+# ----------------------------------------------
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -22,3 +46,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# 6. TESTING & COVERAGE
+# ----------------------------------------------
+coverage
+__snapshots__
+
+# 7. VERCEL & DEPLOYMENT CACHE
+# ----------------------------------------------
+.vercel

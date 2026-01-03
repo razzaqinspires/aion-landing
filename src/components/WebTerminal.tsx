@@ -847,9 +847,8 @@ const LandingContent = ({ onOpenDocs, onOpenStatus, onOpenTerminal }: { onOpenDo
           <p className="text-slate-500 max-w-sm text-sm font-mono">// Pengembangan teknologi kognitif tingkat lanjut.</p>
         </div>
         <div className="relative overflow-hidden">
-          <motion.div className="flex cursor-grab active:cursor-grabbing" drag="x" dragControls={dragControls} dragConstraints={{ left: -(researchItems.length - 1) * 350, right: 0 }} dragElastic={0.2} onDragEnd={(e, i) => { 
-             // [FIX] 'e' removed from check to suppress unused warning
-             if (i.offset.x < -100) setCurrentIndex(c => Math.min(c + 1, researchItems.length - 1)); else if (i.offset.x > 100) setCurrentIndex(c => Math.max(c - 1, 0)); 
+          <motion.div className="flex cursor-grab active:cursor-grabbing" drag="x" dragControls={dragControls} dragConstraints={{ left: -(researchItems.length - 1) * 350, right: 0 }} dragElastic={0.2} onDragEnd={(_, i) => {
+            if (i.offset.x < -100) setCurrentIndex(c => Math.min(c + 1, researchItems.length - 1)); else if (i.offset.x > 100) setCurrentIndex(c => Math.max(c - 1, 0)); 
           }} animate={{ x: -currentIndex * 350 }}>
             {researchItems.map((item, i) => (
               <div key={i} className="min-w-[300px] md:min-w-[400px] px-2">
