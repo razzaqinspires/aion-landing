@@ -15,6 +15,7 @@ export class NeuralCore {
   public entropy: number = 0;
   public interactionCount: number = 0;
   private startTime: number;
+  private lastInteractionTime = Date.now();
 
   private constructor() {
     this.startTime = Date.now();
@@ -37,7 +38,8 @@ export class NeuralCore {
   }
 
   // Menerima stimulus dari luar (Input User)
-  public stimulus(type: 'click' | 'key' | 'scroll') {
+  // [FIX] Menggunakan prefix underscore (_) agar lolos linter jika tidak dipakai
+  public stimulus(_type: 'click' | 'key' | 'scroll') {
     this.interactionCount++;
     if (this.state === 'OBSERVING' || this.state === 'DREAMING') {
       this.state = 'PROCESSING';
@@ -51,8 +53,6 @@ export class NeuralCore {
     this.lastInteractionTime = Date.now();
   }
 
-  private lastInteractionTime = Date.now();
-
   // Evaluasi Diri (Refleksi) - Dipanggil oleh UI Loop
   public evaluate(): { entropy: number, state: ConsciousnessState } {
     const uptime = Date.now() - this.startTime;
@@ -60,7 +60,7 @@ export class NeuralCore {
     // Hitung Entropi menggunakan modul Matematika Otonom
     this.entropy = GenesisMath.calculateEntropy(uptime, this.interactionCount);
 
-    // Jika sistem terlalu lama diam, masuk mode "Dreaming" (Screensaver logic potential)
+    // Jika sistem terlalu lama diam, masuk mode "Dreaming"
     if (Date.now() - this.lastInteractionTime > 60000 && this.state !== 'DREAMING') {
         this.state = 'DREAMING';
     }

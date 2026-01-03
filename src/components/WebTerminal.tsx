@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 
 // [INTEGRATION] Import Logic Layer
-import { NeuralCore } from './logic/NeuralCore';
+import { NeuralCore } from '../logic/NeuralCore';
 
 // ==========================================
 // 🛠️ CONFIG & TYPES

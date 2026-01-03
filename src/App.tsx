@@ -835,6 +835,8 @@ const LandingContent = ({ onOpenDocs, onOpenStatus, onOpenTerminal }: { onOpenDo
           <div className="flex flex-wrap gap-10 justify-center md:justify-start relative z-10">
             <div className="flex flex-col"><span className="text-[9px] text-slate-500 font-mono uppercase tracking-[0.3em] mb-1">System Uptime</span><div className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-aion-neon" /><span className="text-sm text-white font-bold font-mono">99.99%</span></div></div>
             <div className="flex flex-col"><span className="text-[9px] text-slate-500 font-mono uppercase tracking-[0.3em] mb-1">Active Instance</span><span className="text-sm text-white font-bold font-mono uppercase">AION-PRIME-JKT</span></div>
+            {/* Gunakan onOpenStatus di sini untuk menghilangkan warning */}
+             <div className="flex flex-col cursor-pointer hover:text-aion-main transition-colors" onClick={onOpenStatus}><span className="text-[9px] text-slate-500 font-mono uppercase tracking-[0.3em] mb-1">Status Link</span><span className="text-sm text-white font-bold font-mono uppercase flex items-center gap-2">CHECK SIGNAL <Activity size={10} /></span></div>
           </div>
           <motion.button onClick={onOpenTerminal} whileHover={{ scale: 1.02, backgroundColor: "rgba(0, 243, 255, 0.1)" }} whileTap={{ scale: 0.98 }} className="relative z-10 group flex items-center gap-4 px-8 py-5 border border-aion-main/20 rounded-2xl text-[10px] font-black text-white uppercase tracking-[0.2em] transition-all">
             <div className="p-2 bg-aion-main/10 rounded-lg group-hover:bg-aion-main group-hover:text-black transition-all"><Terminal size={16} /></div>INITIALIZE TERMINAL
@@ -849,7 +851,10 @@ const LandingContent = ({ onOpenDocs, onOpenStatus, onOpenTerminal }: { onOpenDo
           <p className="text-slate-500 max-w-sm text-sm font-mono">// Pengembangan teknologi kognitif tingkat lanjut.</p>
         </div>
         <div className="relative overflow-hidden">
-          <motion.div className="flex cursor-grab active:cursor-grabbing" drag="x" dragControls={dragControls} dragConstraints={{ left: -(researchItems.length - 1) * 350, right: 0 }} dragElastic={0.2} onDragEnd={(e, i) => { if (i.offset.x < -100) setCurrentIndex(c => Math.min(c + 1, researchItems.length - 1)); else if (i.offset.x > 100) setCurrentIndex(c => Math.max(c - 1, 0)); }} animate={{ x: -currentIndex * 350 }}>
+          {/* Gunakan _ di onDragEnd (e, i) -> (_, i) untuk menghindari error unused variable 'e' */}
+          <motion.div className="flex cursor-grab active:cursor-grabbing" drag="x" dragControls={dragControls} dragConstraints={{ left: -(researchItems.length - 1) * 350, right: 0 }} dragElastic={0.2} onDragEnd={(_, i) => { 
+             if (i.offset.x < -100) setCurrentIndex(c => Math.min(c + 1, researchItems.length - 1)); else if (i.offset.x > 100) setCurrentIndex(c => Math.max(c - 1, 0)); 
+          }} animate={{ x: -currentIndex * 350 }}>
             {researchItems.map((item, i) => (
               <div key={i} className="min-w-[300px] md:min-w-[400px] px-2">
                 <motion.div onClick={() => setSelectedResearch(item)} className="bg-slate-900/40 border border-white/5 p-10 rounded-[2.5rem] backdrop-blur-xl hover:border-aion-main/30 transition-all group cursor-pointer hover:bg-slate-900/60">
