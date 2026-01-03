@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Activity, Cpu, Zap, Wifi, X } from 'lucide-react';
+import { Activity, Zap, Wifi, X } from 'lucide-react';
 
 // ==========================================
 // 🛠️ CONFIG & TYPES
